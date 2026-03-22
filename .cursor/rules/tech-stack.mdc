@@ -1,0 +1,178 @@
+---
+description: Application tech stack, dependency versions, and best practices
+globs:
+alwaysApply: false
+---
+# RG Fightclub – Tech Stack & Best Practices
+
+Reference for the application stack, versions, and usage guidelines.
+
+## Stack Overview
+
+| Layer | Technology | Project | Latest |
+|-------|------------|---------|--------|
+| Framework | Next.js | 16.1.6 | 16.1.6 ✓ |
+| UI Library | React | 19.2.3 | 19.2.4 |
+| Styling | Tailwind CSS | ^4 (4.1.x) | 4.2.1 |
+| Language | TypeScript | ^5 | 5.9.3 |
+| Animations | AOS | ^2.3.4 | 2.3.4 ✓ |
+| Carousel | Swiper | ^12.1.0 | 12.1.2 |
+| Icons | react-icons | ^5.5.0 | 5.6.0 |
+| Linting | ESLint + eslint-config-next | ^9 / 16.1.6 | 10.x / 16.1.6 ✓ |
+
+## Recommended Versions (latest)
+
+```json
+{
+  "dependencies": {
+    "aos": "^2.3.4",
+    "next": "16.1.6",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-icons": "^5.6.0",
+    "swiper": "^12.1.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.2",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.6",
+    "tailwindcss": "^4.2",
+    "typescript": "^5.9"
+  }
+}
+```
+
+**Upgrade command:** `npm update` (respects semver ranges). For major jumps, run `npm install <pkg>@latest`.
+
+---
+
+## Next.js 16.1.6
+
+**Remarks:**
+- Uses **App Router** (`app/` directory)
+- Dev script uses **Turbopack** (`next dev --turbopack`); fallback: `dev:webpack`
+- Images: `remotePatterns` for external domains; SVG allowed with CSP
+
+**Best practices:**
+- Prefer Server Components; add `'use client'` only when needed (hooks, AOS, Swiper, event handlers)
+- Use `next/image` for images; configure `remotePatterns` in `next.config.ts` for external URLs
+- Keep layout and page components lean; delegate heavy logic to Server Components or API routes
+- Turbopack for builds (alpha in 15.x) may land in 16.x; monitor release notes
+
+---
+
+## React 19.2.x
+
+**Remarks:**
+- React 19 includes automatic memoization, Actions, and `use()` for async context
+- `ref` can be passed as a prop (no `forwardRef` for simple cases)
+- **19.2+**: `Activity` component for app prioritization; `useEffectEvent` for cleaner Effect logic
+
+**Best practices:**
+- Prefer Server Components for static content; use `'use client'` only for interactivity
+- Avoid redundant `React.memo`, `useMemo`, `useCallback` unless profiling shows benefit
+- Keep state local; use custom hooks for shared logic
+- Use `startTransition` for non-urgent updates; wrap async UI in `Suspense`
+- Consider `useEffectEvent` (19.2+) to avoid Effect dependency churn when accessing latest props/state
+
+---
+
+## Tailwind CSS v4 (4.2.x)
+
+**Remarks:**
+- Uses **CSS-first config** via `@theme inline` in `globals.css` (no `tailwind.config.js`)
+- PostCSS plugin: `@tailwindcss/postcss`
+- Import: `@import "tailwindcss"` (not `@tailwind base/components/utilities`)
+- v4.2: Incremental builds in microseconds; container queries, 3D transforms, `@starting-style`
+
+**Best practices:**
+- Define theme tokens in `@theme inline { ... }` (colors, fonts, gradients)
+- Use CSS custom properties for runtime theming: `var(--color-primary)`
+- v4 uses canonical class names; if migrating from v3, run `npx @tailwindcss/upgrade`
+- Gradients: v4 prefers `bg-linear-to-*` over `bg-gradient-to-*` in new code
+- Browser support: Safari 16.4+, Chrome 111+, Firefox 128+
+
+---
+
+## TypeScript ^5 (5.9.x)
+
+**Best practices:**
+- Use `@/` path alias for imports
+- Prefer `type` imports: `import type { Project } from '@/types'`
+- Keep shared types in `types/index.ts`
+- TS 5.9: Improved inference and editor performance; stay on `^5` for minor updates
+
+---
+
+## AOS (Animate on Scroll) ^2.3.4
+
+**Remarks:**
+- Requires client-side init; must run in a Client Component
+
+**Best practices:**
+- Initialize in `useEffect` inside a Client Component (e.g. layout or wrapper)
+- Import CSS: `import 'aos/dist/aos.css'`
+- Use `data-aos`, `data-aos-duration`, `data-aos-delay`, `data-aos-offset` on elements
+- Consider `once: true` in `AOS.init()` for performance (animations run once)
+
+```typescript
+'use client';
+import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+export default function AOSProvider({ children }: { children: React.ReactNode }) {
+  useEffect(() => {
+    AOS.init({ duration: 800, once: true });
+  }, []);
+  return <>{children}</>;
+}
+```
+
+---
+
+## Swiper ^12.1.x
+
+**Remarks:**
+- Must run in a Client Component (uses hooks and DOM)
+
+**Best practices:**
+- Import Swiper CSS in `globals.css` or the component
+- Use `Swiper` and `SwiperSlide` from `swiper/react`
+- For testimonials/carousels: configure `autoplay`, `loop`, `slidesPerView` (1 mobile, 2+ desktop)
+- Add `overflow: visible` via custom class if slides need to extend outside (e.g. `.testimonials-swiper`)
+
+---
+
+## react-icons ^5.6.0
+
+**Best practices:**
+- Import only the icons you use: `import { FaInstagram } from 'react-icons/fa'`
+- Avoid `import * from 'react-icons/fa'` to keep bundle size small
+
+---
+
+## ESLint ^9
+
+**Remarks:**
+- ESLint 10 is available; migration may require config updates (flat config is default in 9+)
+- `eslint-config-next` 16.1.6 aligns with Next.js 16
+
+**Best practices:**
+- Keep `eslint-config-next` version aligned with Next.js
+- Run `npm run lint` before commits
+
+---
+
+## Scripts
+
+| Script | Command | Use |
+|--------|---------|-----|
+| `dev` | `next dev --turbopack` | Development (Turbopack) |
+| `dev:webpack` | `next dev` | Development (Webpack fallback) |
+| `build` | `next build` | Production build |
+| `start` | `next start` | Run production server |
+| `lint` | `eslint` | Lint codebase |

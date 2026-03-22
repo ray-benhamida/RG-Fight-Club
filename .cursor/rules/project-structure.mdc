@@ -1,0 +1,99 @@
+---
+description: Project directory structure and important files for RG Fightclub
+globs:
+alwaysApply: false
+---
+# RG Fightclub – Project Structure
+
+Reference for the directory layout and key files in this Next.js portfolio project.
+
+## Directory Structure
+
+```
+RG Fightclub/
+├── app/                          # Next.js App Router (pages & layout)
+│   ├── globals.css               # Global styles, Tailwind, AOS, Swiper
+│   ├── layout.tsx                # Root layout, fonts, metadata
+│   └── page.tsx                  # Home page (composes all sections)
+│
+├── components/                   # React components
+│   ├── Header.tsx                # Sticky nav, scroll behavior
+│   ├── Hero.tsx                  # Hero section with background
+│   ├── Presentation.tsx         # About section
+│   ├── Projects.tsx             # Projects tabs
+│   ├── Gallery.tsx              # Image gallery grid
+│   ├── Testimonials.tsx         # Swiper testimonials slider
+│   └── Footer.tsx               # Footer with links & contact
+│
+├── types/                        # TypeScript definitions
+│   └── index.ts                 # Project, Testimonial, GalleryImage
+│
+├── public/                       # Static assets (served at /)
+│   ├── images/                   # Site images
+│   │   ├── rgfightclub_hero.png
+│   │   ├── rgfightclub_logo_black.svg
+│   │   ├── rgfightclub_logo_white.svg
+│   │   ├── rgfightclub_presentation.png
+│   │   ├── rgfightclub_testimonial.png
+│   │   └── ...
+│   ├── file.svg
+│   ├── vercel.svg
+│   └── window.svg
+│
+├── .cursor/
+│   └── rules/                    # Cursor rules
+│       ├── cursor-rules.mdc
+│       ├── project-structure.mdc
+│       └── self-improvement.mdc
+│
+├── .gitignore
+├── eslint.config.mjs
+├── next.config.ts
+├── package.json
+├── package-lock.json
+├── postcss.config.mjs
+├── tsconfig.json
+│
+└── Documentation (project root)
+    ├── README.md
+    ├── PROJECT_STRUCTURE.md
+    ├── CUSTOMIZATION.md
+    ├── DEPLOYMENT.md
+    ├── FEATURES.md
+    ├── GETTING_STARTED.md
+    ├── QUICKSTART.md
+    ├── RESOURCES.md
+    ├── SEO.md
+    └── TODO.md
+```
+
+## Important Files
+
+| File | Purpose |
+|------|---------|
+| `app/page.tsx` | Main page; imports and renders all sections |
+| `app/layout.tsx` | Root layout, fonts, metadata |
+| `app/globals.css` | Tailwind, AOS, Swiper, custom variables |
+| `types/index.ts` | Shared types (Project, Testimonial, GalleryImage) |
+| `next.config.ts` | Next.js config (images, etc.) |
+| `package.json` | Dependencies, scripts (dev, build, start, lint) |
+
+## Component Flow
+
+```
+page.tsx
+  ├── Header
+  ├── Hero
+  ├── Presentation
+  ├── Projects
+  ├── Gallery
+  ├── Testimonials
+  └── Footer
+```
+
+## Conventions
+
+- **Components**: PascalCase (`Header.tsx`, `Hero.tsx`)
+- **Imports**: Use `@/` alias for project paths
+- **Images**: Place in `public/images/`, reference as `/images/...`
+- **New rules**: Add under `.cursor/rules/` with `.mdc` extension

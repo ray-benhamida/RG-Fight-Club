@@ -1,26 +1,136 @@
 @import "tailwindcss";
+@import 'aos/dist/aos.css';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-background: #ffffff;
+  --color-foreground: #171717;
+  --color-darkgray: #3F3D3D;
+  --color-primary: #FF6B00;
+  --color-primary-hover: #FF7F1F;
+  --color-primary-light: #FFF4ED;
+  --font-sans: var(--font-open-sans);
+  --font-display: var(--font-raleway);
+  --font-alt: var(--font-ubuntu);
+  /* Gradients comme variables de thème (référenceables via bg-gradient-primary, etc.) */
+  --color-gradient-primary: linear-gradient(135deg, #FF7904 0%, #D45600 100%);
+  --color-gradient-dark: linear-gradient(135deg, #171717 0%, #383838 100%);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display), var(--font-sans), sans-serif;
+  font-weight: 700;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+/* Utility classes pour les polices */
+.font-display {
+  font-family: var(--font-raleway), sans-serif;
+}
+
+.font-alt {
+  font-family: var(--font-ubuntu), sans-serif;
+}
+
+/* Gradient primary - utilise la variable de thème */
+.bg-gradient-primary {
+  background: var(--color-gradient-primary);
+}
+
+.before\:bg-gradient-primary::before {
+  background: var(--color-gradient-primary);
+}
+
+.bg-gradient-dark {
+  background-image: var(--color-gradient-dark);
+  background-color: #171717;
+}
+
+/* Background divisé : 45% primary à gauche, 55% blanc à droite */
+.bg-split-primary-white {
+  background: linear-gradient(to right, var(--color-primary) 0%, var(--color-primary) 45%, #FFFFFF 45%, #FFFFFF 100%);
+}
+
+/* Rectangle orange à gauche avec ::after incliné */
+.bg-left-primary {
+  position: relative;
+}
+
+.bg-left-primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -55%;
+  width: 100%;
+  height: 100%;
+  background: var(--color-gradient-primary);
+  transform: skewX(20deg);
+  transform-origin: top left;
+  z-index: 0;
+}
+
+/* CTA Hero : ne pas mettre data-aos sur ce bouton — AOS impose transition-property: opacity,transform
+   (spécificité [data-aos^=fade]×2) et écrase la transition du box-shadow. data-aos sur un span parent. */
+.hero-cta-glow {
+  box-shadow: 0 10px 40px rgba(255, 121, 4, 0);
+  transition: box-shadow 0.35s ease-out;
+}
+
+.hero-cta-glow:hover {
+  box-shadow: 0 10px 40px rgba(255, 121, 4, 0.5);
+}
+
+/* Bouton avec bordure en dégradé */
+.gradient-border-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  background: #FFFFFF;
+  color: var(--color-primary);
+  border-radius: 9999px;
+  border: 2px solid var(--color-primary);
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.gradient-border-button:hover {
+  box-shadow: 0 10px 25px rgba(255, 107, 0, 0.3);
+  background: #FFFFFF;
+}
+
+.gradient-border-button:hover::before {
+  inset: -4px;
+}
+
+.testimonials-swiper {
+  overflow: visible !important;
+}
+
+@keyframes marquee {
+  0% {
+      transform: translateX(0)
+  }
+
+  to {
+      transform: translateX(-33.33%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite
 }
