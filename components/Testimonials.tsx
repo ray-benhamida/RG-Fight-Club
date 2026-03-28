@@ -46,18 +46,21 @@ export default function Testimonials() {
 	}, []);
 
 	return (
-		<section id="testimonials" className="relative py-0 before:content-[''] before:absolute  before:bottom-0 before:right-0 before:h-2/5 md:before:h-full before:w-full md:before:w-1/2 before:bg-gradient-primary before:z-0">
-			<div className="container mx-auto px-8 flex flex-col md:flex-row py-10 md:py-20 gap-16 relative z-10">
+		<section
+			id="testimonials"
+			className="relative overflow-x-hidden py-0 before:pointer-events-none before:absolute before:bottom-0 before:right-0 before:z-0 before:h-2/5 before:w-full before:bg-gradient-primary before:content-[''] md:before:h-full md:before:w-1/2"
+		>
+			<div className="container mx-auto relative z-10 flex flex-col gap-16 px-4 py-10 sm:px-6 md:flex-row md:px-8 md:py-20">
 				{/* Partie gauche - Titre et Navigation */}
-				<div className="flex flex-col items-start justify-center">
-					{/* Guillemets décoratifs */}
+				<div className="flex min-w-0 flex-col items-start justify-center">
+					{/* Guillemets décoratifs — éviter margin négative qui élargit le document */}
 					<Image
 						src="/images/quote.svg"
 						alt=""
 						role="presentation"
 						width={120}
 						height={120}
-						className="ml-auto -mr-10 -mb-4"
+						className="mb-2 ml-auto w-20 shrink-0 sm:-mb-4 sm:w-[120px]"
 					/>
 
 					{/* Titre */}

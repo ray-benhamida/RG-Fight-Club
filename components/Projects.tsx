@@ -120,8 +120,8 @@ function ProjectContent({
 							))}
 						</div>
 
-						<div className="relative w-full md:w-5/12 shrink-0" data-aos="fade-left" data-aos-delay="200">
-							<div className="relative aspect-[4/3] shadow-2xl before:content-[''] before:absolute before:bg-primary before:z-10 before:top-3 before:left-3 before:w-full before:h-full">
+						<div className="relative w-full shrink-0 p-3 md:w-5/12" data-aos="fade-left" data-aos-delay="200">
+							<div className="relative aspect-[4/3] shadow-2xl before:pointer-events-none before:absolute before:top-3 before:left-3 before:z-10 before:h-full before:w-full before:bg-primary before:content-['']">
 								<Image
 									src={prestation.image}
 									alt={prestation.imageAlt}

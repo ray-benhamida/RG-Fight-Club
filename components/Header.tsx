@@ -37,23 +37,37 @@ export default function Header() {
 
 	return (
 		<header
-			className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+			className={`fixed inset-x-0 top-0 z-50 w-full max-w-full overflow-x-hidden transition-all duration-300 ${isScrolled
 				? 'bg-white backdrop-blur-sm shadow-xl text-black'
 				: 'bg-transparent text-white'
 				}`}
 		>
-			<div className="container mx-auto px-6 py-5">
-				<div className="flex items-center justify-between">
-					{/* Logo */}
-					<div className="flex items-center" data-aos="fade-right">
+			<div className="mx-auto box-border flex w-full min-w-0 max-w-7xl px-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] py-5 sm:px-6 sm:pl-[max(1.5rem,env(safe-area-inset-left))] sm:pr-[max(1.5rem,env(safe-area-inset-right))]">
+				<div className="flex min-w-0 flex-1 items-center justify-between gap-3">
+					{/* Logo — pas de data-aos ici : les transforms AOS peuvent provoquer du débordement */}
+					<div className="flex shrink-0 items-center">
 						<Link
 							href="/"
-							className="font-black text-3xl tracking-tight hover:opacity-80 transition-opacity"
+							className="block shrink-0 hover:opacity-80 transition-opacity"
 						>
 							{isScrolled ? (
-								<Image src="/images/rgfightclub_logo_black.svg" alt="RG Fight Club" width={80} height={80} />
+								<Image
+									src="/images/rgfightclub_logo_black.svg"
+									alt="RG Fight Club"
+									width={80}
+									height={80}
+									className="h-14 w-14 sm:h-16 sm:w-16 md:h-20 md:w-20"
+									sizes="(max-width: 768px) 56px, 80px"
+								/>
 							) : (
-								<Image src="/images/rgfightclub_logo_white.svg" alt="RG Fight Club" width={80} height={80} />
+								<Image
+									src="/images/rgfightclub_logo_white.svg"
+									alt="RG Fight Club"
+									width={80}
+									height={80}
+									className="h-14 w-14 sm:h-16 sm:w-16 md:h-20 md:w-20"
+									sizes="(max-width: 768px) 56px, 80px"
+								/>
 							)}
 						</Link>
 					</div>

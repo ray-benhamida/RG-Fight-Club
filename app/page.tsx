@@ -8,21 +8,21 @@ import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  alternates: {
-    canonical: "/",
-  },
+	alternates: {
+		canonical: "/",
+	},
 };
 
 export default function Home() {
-  return (
-    <main>
-      <Header />
-      <Hero />
-      <Presentation />
-      <Projects />
-      <Gallery />
-      <Testimonials />
-      <Footer />
-    </main>
-  );
+	return (
+		<main className="min-w-0 max-w-full overflow-x-hidden">
+			<Header />
+			<Hero />
+			<Presentation />
+			<Projects />
+			<Gallery />
+			<Testimonials />
+			<Footer />
+		</main>
+	);
 }
