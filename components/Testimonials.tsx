@@ -52,7 +52,7 @@ export default function Testimonials() {
 		>
 			<div className="container mx-auto relative z-10 flex flex-col gap-16 px-4 py-10 sm:px-6 md:flex-row md:px-8 md:py-20">
 				{/* Partie gauche - Titre et Navigation */}
-				<div className="flex min-w-0 flex-col items-start justify-center">
+				<div className="flex min-w-0 shrink-0 flex-col items-start justify-center" data-aos="fade-right">
 					{/* Guillemets décoratifs — éviter margin négative qui élargit le document */}
 					<Image
 						src="/images/quote.svg"
@@ -64,7 +64,7 @@ export default function Testimonials() {
 					/>
 
 					{/* Titre */}
-					<div className="mb-4" data-aos="fade-right">
+					<div className="mb-4">
 						<h2 className="text-4xl md:text-5xl font-medium font-alt italic leading-tight tracking-wide mb-0">
 							<span className="text-black">RETOURS ET</span> <br />
 							<span className="text-primary">TÉMOIGNAGES</span>
