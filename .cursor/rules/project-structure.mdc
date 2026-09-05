@@ -11,10 +11,18 @@ Reference for the directory layout and key files in this Next.js portfolio proje
 
 ```
 RG Fightclub/
-├── app/                          # Next.js App Router (pages & layout)
-│   ├── globals.css               # Global styles, Tailwind, AOS, Swiper
-│   ├── layout.tsx                # Root layout, fonts, metadata
-│   └── page.tsx                  # Home page (composes all sections)
+├── app/                          # Next.js App Router
+│   ├── (frontend)/               # Site public
+│   │   ├── globals.css           # Global styles, Tailwind, AOS, Swiper
+│   │   ├── layout.tsx            # Root layout, fonts, metadata
+│   │   ├── page.tsx              # Home page (composes all sections)
+│   │   ├── robots.ts
+│   │   └── sitemap.ts
+│   └── (payload)/                # Payload CMS (admin + API)
+│       ├── admin/[[...segments]]/
+│       └── api/
+├── collections/                  # Payload collections (Users, Media)
+├── payload.config.ts             # Payload CMS configuration
 │
 ├── components/                   # React components
 │   ├── Header.tsx                # Sticky nav, scroll behavior

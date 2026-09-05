@@ -37,6 +37,6 @@ export const siteConfig = {
     postalCode: undefined as string | undefined,
     addressLocality: undefined as string | undefined,
     telephone: undefined as string | undefined,
-    email: undefined as string | undefined,
+    email: "contact@rg-fight-club.fr" as string | undefined,
   },
 };

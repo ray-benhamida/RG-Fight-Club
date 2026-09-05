@@ -31,9 +31,12 @@ Vercel est la plateforme officielle de Next.js et offre le meilleur support.
    - Build Command : `npm run build`
    - Output Directory : `.next`
 
-5. **Variables d'environnement** (optionnel)
-   - Ajoutez vos variables d'environnement dans l'interface Vercel
-   - Exemple : `NEXT_PUBLIC_INSTAGRAM_URL=https://instagram.com/...`
+5. **Variables d'environnement**
+   - Copiez les variables depuis [`.env.example`](.env.example) dans Vercel (Settings → Environment Variables)
+   - **Site :** `NEXT_PUBLIC_SITE_URL` (URL canonique, sans slash final)
+   - **Payload CMS :** `DATABASE_URI` (MongoDB Atlas), `PAYLOAD_SECRET` (secret aléatoire 32+ car.)
+   - **Médias :** `BLOB_READ_WRITE_TOKEN` — activez **Vercel Blob** sur le projet (Storage) pour que le token soit créé automatiquement
+   - MongoDB Atlas : autorisez l’accès réseau (IP `0.0.0.0/0` ou plages Vercel) pour les fonctions serverless
 
 6. **Déployer**
    - Cliquez sur "Deploy"

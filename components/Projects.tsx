@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 
 interface Prestation {
@@ -139,16 +139,6 @@ function ProjectContent({
 
 export default function Projects() {
 	const [activeTab, setActiveTab] = useState(0);
-
-	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			const AOS = require('aos');
-			AOS.init({
-				duration: 800,
-				once: true,
-			});
-		}
-	}, []);
 
 	return (
 		<section id="projects" className="py-20 bg-gradient-dark">

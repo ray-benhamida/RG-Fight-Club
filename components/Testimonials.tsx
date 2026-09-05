@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
+import { useRef } from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as SwiperType } from 'swiper';
@@ -34,16 +34,6 @@ const testimonials: Testimonial[] = [
 
 export default function Testimonials() {
 	const swiperRef = useRef<SwiperType | null>(null);
-
-	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			const AOS = require('aos');
-			AOS.init({
-				duration: 1000,
-				once: true,
-			});
-		}
-	}, []);
 
 	return (
 		<section

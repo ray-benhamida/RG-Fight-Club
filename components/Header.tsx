@@ -1,43 +1,87 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { FaInstagram } from 'react-icons/fa';
 import Image from 'next/image';
+import type { HeaderNavData } from '@/lib/header';
 
-export default function Header() {
+interface HeaderProps {
+	variant?: 'home' | 'solid';
+	navLinks: HeaderNavData['navLinks'];
+	instagram: HeaderNavData['instagram'];
+}
+
+const navLinkClass =
+	'hover:text-primary transition-colors font-bold text-base';
+
+export default function Header({
+	variant = 'home',
+	navLinks,
+	instagram,
+}: HeaderProps) {
+	const pathname = usePathname();
+	const headerRef = useRef<HTMLElement>(null);
 	const [isScrolled, setIsScrolled] = useState(false);
+	const [mounted, setMounted] = useState(false);
+	const showScrolled = variant === 'solid' || (mounted && isScrolled);
 
 	useEffect(() => {
-		if (window.scrollY > 20) {
-			setIsScrolled(true);
-		}
+		setMounted(true);
 
 		const handleScroll = () => {
 			setIsScrolled(window.scrollY > 20);
 		};
 
-		window.addEventListener('scroll', handleScroll);
+		handleScroll();
+		window.addEventListener('scroll', handleScroll, { passive: true });
 		return () => window.removeEventListener('scroll', handleScroll);
 	}, []);
 
 	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			const AOS = require('aos');
-			AOS.init({ duration: 600, once: true });
-		}
-	}, []);
+		const el = headerRef.current;
+		if (!el) return;
 
-	const scrollToSection = (id: string) => {
-		const element = document.getElementById(id);
+		const syncHeaderHeight = () => {
+			document.documentElement.style.setProperty(
+				'--site-header-height',
+				`${el.offsetHeight}px`,
+			);
+		};
+
+		syncHeaderHeight();
+		const observer = new ResizeObserver(syncHeaderHeight);
+		observer.observe(el);
+		return () => observer.disconnect();
+	}, [showScrolled, mounted]);
+
+	const isHomepage = variant === 'home';
+	const navAosProps = isHomepage ? { 'data-aos': 'fade-down' as const } : {};
+	const instagramAosProps = isHomepage ? { 'data-aos': 'fade-left' as const } : {};
+
+	const scrollToSection = (sectionId: string) => {
+		const element = document.getElementById(sectionId);
 		if (element) {
 			element.scrollIntoView({ behavior: 'smooth' });
+			window.history.pushState(null, '', `#${sectionId}`);
+		}
+	};
+
+	const handleSectionClick = (
+		event: React.MouseEvent<HTMLAnchorElement>,
+		sectionId: string,
+	) => {
+		if (pathname === '/') {
+			event.preventDefault();
+			scrollToSection(sectionId);
 		}
 	};
 
 	return (
 		<header
-			className={`fixed inset-x-0 top-0 z-50 w-full max-w-full overflow-x-hidden transition-all duration-300 ${isScrolled
+			ref={headerRef}
+			className={`fixed inset-x-0 top-0 z-50 w-full max-w-full overflow-x-hidden transition-all duration-300 ${showScrolled
 				? 'bg-white backdrop-blur-sm shadow-xl text-black'
 				: 'bg-transparent text-white'
 				}`}
@@ -50,7 +94,7 @@ export default function Header() {
 							href="/"
 							className="block shrink-0 hover:opacity-80 transition-opacity"
 						>
-							{isScrolled ? (
+							{showScrolled ? (
 								<Image
 									src="/images/rgfightclub_logo_black.svg"
 									alt="RG Fight Club"
@@ -73,36 +117,35 @@ export default function Header() {
 					</div>
 
 					{/* Navigation centrée */}
-					<nav className="hidden md:flex items-center justify-center flex-1 space-x-10" data-aos="fade-down">
-						<button
-							onClick={() => scrollToSection('presentation')}
-							className="hover:text-primary transition-colors font-bold text-base cursor-pointer"
-						>
-							Présentation
-						</button>
-						<button
-							onClick={() => scrollToSection('projects')}
-							className="hover:text-primary transition-colors font-bold text-base cursor-pointer"
-						>
-							Prestations
-						</button>
-						<button
-							onClick={() => scrollToSection('testimonials')}
-							className="hover:text-primary transition-colors font-bold text-base cursor-pointer"
-						>
-							Témoignages
-						</button>
+					<nav
+						className="hidden md:flex items-center justify-center flex-1 space-x-10"
+						{...navAosProps}
+					>
+						{navLinks.map((link) => (
+							<a
+								key={`${link.href}-${link.label}`}
+								href={link.href}
+								onClick={
+									link.sectionId
+										? (event) => handleSectionClick(event, link.sectionId!)
+										: undefined
+								}
+								className={navLinkClass}
+							>
+								{link.label}
+							</a>
+						))}
 					</nav>
 
 					{/* Bouton Instagram à droite */}
-					<div className="hidden md:flex items-center" data-aos="fade-left">
+					<div className="hidden md:flex items-center" {...instagramAosProps}>
 						<a
-							href="https://www.instagram.com/rg_fight_club"
+							href={instagram.url}
 							target="_blank"
 							rel="noopener noreferrer"
 							className="gradient-border-button"
 						>
-							<span className="text-sm font-bold tracking-wider italic">RG_FIGHT_CLUB</span>
+							<span className="text-sm font-bold tracking-wider italic">{instagram.label}</span>
 							<FaInstagram className="text-xl" />
 						</a>
 					</div>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+	<!-- poignet -->
+	<path
+		d="M16 44h18c2.8 0 4.5 2 4.5 4.5S36.8 53 34 53H16c-2.8 0-4.5-2-4.5-4.5S13.2 44 16 44Z"
+		stroke="#FF6B00"
+		stroke-width="2.25"
+		stroke-linejoin="round"
+	/>
+	<!-- corps du gant -->
+	<path
+		d="M15.5 44c-1.2-4.5-1.2-9.5 1-14.5 3.2-7.2 10.4-13.5 18.8-13.5 8.6 0 15.2 6.6 15.2 15.2 0 7.4-4.4 13.2-11.2 15.6"
+		stroke="#FF6B00"
+		stroke-width="2.25"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+	/>
+	<!-- pouce -->
+	<path
+		d="M35 16.5c3.2-5.2 10.2-6.2 14.4-2.2 4 3.8 3.6 10.2-.4 13.6"
+		stroke="#FF6B00"
+		stroke-width="2.25"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+	/>
+	<!-- lacets -->
+	<path
+		d="M20 28.5c3 .8 6.2.4 9-.8M19.5 34c3.2.8 6.6.4 9.6-1M20.5 39.5c2.8.6 5.8.3 8.4-.8"
+		stroke="#FF6B00"
+		stroke-width="2.25"
+		stroke-linecap="round"
+	/>
+</svg>

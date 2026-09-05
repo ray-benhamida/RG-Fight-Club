@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { FaInstagram } from 'react-icons/fa';
 import Image from 'next/image';
@@ -9,15 +9,8 @@ import LegalMentions from './LegalMentions';
 export default function Footer() {
 	const [isLegalOpen, setIsLegalOpen] = useState(false);
 
-	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			const AOS = require('aos');
-			AOS.init({ duration: 800, once: true });
-		}
-	}, []);
-
 	return (
-		<footer className="bg-gradient-dark text-white py-12">
+		<footer className="mt-auto bg-gradient-dark text-white py-12">
 			<div className="container mx-auto px-8">
 				<div className="flex flex-col md:flex-row items-center justify-between gap-4">
 					{/* Logo à gauche */}

@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { Open_Sans, Raleway, Ubuntu } from "next/font/google";
+import { Barlow_Condensed, Open_Sans, Raleway, Ubuntu } from "next/font/google";
+import AOSProvider from "@/components/AOSProvider";
+import HashScrollHandler from "@/components/HashScrollHandler";
 import StructuredData from "@/components/StructuredData";
 import { getSiteUrl, siteConfig } from "@/lib/site-config";
 import "./globals.css";
@@ -22,6 +24,14 @@ const ubuntu = Ubuntu({
   variable: "--font-ubuntu",
   subsets: ["latin"],
   weight: ["300", "400", "500", "700"],
+  display: "swap",
+});
+
+const barlowCondensed = Barlow_Condensed({
+  variable: "--font-barlow-condensed",
+  subsets: ["latin"],
+  weight: ["800"],
+  style: ["italic"],
   display: "swap",
 });
 
@@ -141,10 +151,14 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body
-        className={`${openSans.variable} ${raleway.variable} ${ubuntu.variable} antialiased`}
+        className={`${openSans.variable} ${raleway.variable} ${ubuntu.variable} ${barlowCondensed.variable} antialiased`}
+        suppressHydrationWarning
       >
         <StructuredData />
-        {children}
+        <AOSProvider>
+          <HashScrollHandler />
+          {children}
+        </AOSProvider>
       </body>
     </html>
   );

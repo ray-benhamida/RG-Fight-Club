@@ -1,21 +1,21 @@
 'use client';
 
-import { useEffect } from 'react';
 import Image from 'next/image';
 
-export default function Presentation() {
-	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			const AOS = require('aos');
-			AOS.init({
-				duration: 1000,
-				once: true,
-			});
-		}
-	}, []);
+interface PresentationProps {
+	overlapTop?: boolean
+}
 
+export default function Presentation({ overlapTop = false }: PresentationProps) {
 	return (
-		<section id="presentation" className="relative py-20 overflow-hidden bg-white bg-left-primary">
+		<section
+			id="presentation"
+			className={`relative overflow-hidden bg-white bg-left-primary ${
+				overlapTop
+					? 'pb-20 pt-[calc(5rem+var(--home-quick-links-height)/2)]'
+					: 'py-20'
+			}`}
+		>
 			<div className="container mx-auto px-8 relative z-10">
 
 				{/* Image à gauche avec cadre noir */}

@@ -36,12 +36,24 @@ Ouvrez cette URL dans votre navigateur pour voir votre portfolio en direct.
 
 ### 🎨 Technologies installées
 
-- ✅ **Next.js 15** - Framework React moderne
+- ✅ **Next.js 16** - Framework React moderne
+- ✅ **Payload CMS 3** - Administration du contenu (`/admin`)
+- ✅ **MongoDB Atlas** - Base de données (URI à configurer)
+- ✅ **Vercel Blob** - Stockage des médias uploadés
 - ✅ **TypeScript** - Typage statique
 - ✅ **Tailwind CSS** - Framework CSS utility-first
 - ✅ **AOS** - Animations on scroll
 - ✅ **Swiper** - Slider professionnel
 - ✅ **React Icons** - Bibliothèque d'icônes
+
+### Payload CMS (administration)
+
+1. Copiez `.env.example` vers `.env.local`
+2. Renseignez `DATABASE_URI` (MongoDB Atlas), `PAYLOAD_SECRET` et optionnellement `BLOB_READ_WRITE_TOKEN`
+3. Lancez `npm run dev` puis ouvrez **http://localhost:3000/admin** pour créer votre compte admin
+4. Le site public (`/`) reste inchangé ; le contenu des sections est encore en dur dans les composants
+
+**Avertissement hydratation sur `/admin` :** si la console affiche un mismatch sur `<body data-atm-ext-installed="...">`, c’est une **extension navigateur** qui modifie le HTML (pas un bug Payload). Le projet active `admin.suppressHydrationWarning` et applique un correctif via `patch-package`. En dernier recours : navigation privée ou désactiver l’extension sur `localhost`.
 
 ## 🎯 Prochaines étapes (dans l'ordre)
 

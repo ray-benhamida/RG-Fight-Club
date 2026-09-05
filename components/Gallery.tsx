@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 
 type GridCell = { src: string; alt: string; col?: number };
 
@@ -93,13 +93,6 @@ function GridElement({ cells }: { cells: GridCell[] }) {
 }
 
 const Gallery: React.FC = () => {
-    useEffect(() => {
-        if (typeof window !== "undefined") {
-            const AOS = require("aos");
-            AOS.init({ duration: 800, once: true });
-        }
-    }, []);
-
     return (
         <div className="w-full overflow-hidden bg-white py-10" data-aos="fade-up">
             <div className="flex h-[300px] w-max animate-marquee gap-4">

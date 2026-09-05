@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Header from "@/components/Header";
+import HeaderContainer from "@/components/HeaderContainer";
 import Hero from "@/components/Hero";
 import Presentation from "@/components/Presentation";
 import Projects from "@/components/Projects";
@@ -15,8 +15,8 @@ export const metadata: Metadata = {
 
 export default function Home() {
 	return (
-		<main className="min-w-0 max-w-full overflow-x-hidden">
-			<Header />
+		<main className="page-layout min-w-0 max-w-full overflow-x-hidden">
+			<HeaderContainer />
 			<Hero />
 			<Presentation />
 			<Projects />

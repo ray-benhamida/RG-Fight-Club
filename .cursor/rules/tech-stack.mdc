@@ -11,14 +11,17 @@ Reference for the application stack, versions, and usage guidelines.
 
 | Layer | Technology | Project | Latest |
 |-------|------------|---------|--------|
-| Framework | Next.js | 16.1.6 | 16.1.6 ✓ |
+| Framework | Next.js | 16.2.6 | 16.2.6 ✓ |
+| CMS | Payload | ^3.84 | — |
+| Database | MongoDB Atlas | via `@payloadcms/db-mongodb` | — |
+| Media storage | Vercel Blob | `@payloadcms/storage-vercel-blob` | — |
 | UI Library | React | 19.2.3 | 19.2.4 |
 | Styling | Tailwind CSS | ^4 (4.1.x) | 4.2.1 |
 | Language | TypeScript | ^5 | 5.9.3 |
 | Animations | AOS | ^2.3.4 | 2.3.4 ✓ |
 | Carousel | Swiper | ^12.1.0 | 12.1.2 |
 | Icons | react-icons | ^5.5.0 | 5.6.0 |
-| Linting | ESLint + eslint-config-next | ^9 / 16.1.6 | 10.x / 16.1.6 ✓ |
+| Linting | ESLint + eslint-config-next | ^9 / 16.2.6 | 10.x / 16.2.6 ✓ |
 
 ## Recommended Versions (latest)
 
@@ -26,7 +29,8 @@ Reference for the application stack, versions, and usage guidelines.
 {
   "dependencies": {
     "aos": "^2.3.4",
-    "next": "16.1.6",
+    "next": "16.2.6",
+    "payload": "^3.84",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-icons": "^5.6.0",
@@ -38,7 +42,7 @@ Reference for the application stack, versions, and usage guidelines.
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.1.6",
+    "eslint-config-next": "16.2.6",
     "tailwindcss": "^4.2",
     "typescript": "^5.9"
   }
@@ -49,7 +53,23 @@ Reference for the application stack, versions, and usage guidelines.
 
 ---
 
-## Next.js 16.1.6
+## Payload CMS 3
+
+**Remarks:**
+- Admin panel at `/admin`; API at `/api/*` (REST + GraphQL)
+- Config: `payload.config.ts`; route group `app/(payload)/`
+- Collections: `users` (auth), `media` (uploads → Vercel Blob when `BLOB_READ_WRITE_TOKEN` is set)
+- Env: `DATABASE_URI`, `PAYLOAD_SECRET`, `BLOB_READ_WRITE_TOKEN`
+
+**Best practices:**
+- Use `npm run dev:webpack` if Turbopack causes issues with the admin
+- Run `npm run generate:types` after schema changes
+- On Vercel: add all Payload env vars; enable Blob storage on the project
+- Site content is still hardcoded in components until collections are wired (phase 2)
+
+---
+
+## Next.js 16.2.6
 
 **Remarks:**
 - Uses **App Router** (`app/` directory)
@@ -176,3 +196,5 @@ export default function AOSProvider({ children }: { children: React.ReactNode })
 | `build` | `next build` | Production build |
 | `start` | `next start` | Run production server |
 | `lint` | `eslint` | Lint codebase |
+| `generate:types` | `payload generate:types` | Generate `payload-types.ts` |
+| `generate:importmap` | `payload generate:importmap` | Regenerate admin import map |

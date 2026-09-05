@@ -12,7 +12,10 @@ Portfolio professionnel moderne développé avec Next.js, TypeScript et Tailwind
 
 ## 📦 Technologies
 
-- [Next.js 15](https://nextjs.org/) - Framework React
+- [Next.js 16](https://nextjs.org/) - Framework React
+- [Payload CMS 3](https://payloadcms.com/) - Headless CMS (admin + API)
+- [MongoDB Atlas](https://www.mongodb.com/atlas) - Base de données
+- [Vercel Blob](https://vercel.com/docs/storage/vercel-blob) - Stockage des médias uploadés
 - [TypeScript](https://www.typescriptlang.org/) - Typage statique
 - [Tailwind CSS](https://tailwindcss.com/) - Framework CSS utility-first
 - [AOS](https://michalsnik.github.io/aos/) - Animations on scroll
@@ -32,22 +35,48 @@ cd rg-fightclub
 npm install
 ```
 
-3. Ajoutez vos images dans le dossier `public/images/` (voir `public/images/README.md` pour les détails)
+3. Copiez les variables d'environnement et renseignez-les :
+```bash
+cp .env.example .env.local
+```
+Voir la section [Payload CMS](#payload-cms) ci-dessous.
 
-4. Lancez le serveur de développement :
+4. Ajoutez vos images dans le dossier `public/images/` (voir `public/images/README.md` pour les détails)
+
+5. Lancez le serveur de développement :
 ```bash
 npm run dev
 ```
+Si l'admin Payload pose problème avec Turbopack : `npm run dev:webpack`
 
-5. Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur
+6. Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur
+
+## Payload CMS
+
+Le panneau d'administration est disponible sur **`/admin`** (après configuration de la base de données).
+
+| Variable | Description |
+|----------|-------------|
+| `DATABASE_URI` | URI MongoDB Atlas (`mongodb+srv://...`) |
+| `PAYLOAD_SECRET` | Secret Payload (32+ caractères aléatoires) |
+| `BLOB_READ_WRITE_TOKEN` | Token Vercel Blob pour les uploads (collection Media) |
+
+**Première connexion :** avec `DATABASE_URI` et `PAYLOAD_SECRET` définis, lancez `npm run dev` puis ouvrez `/admin` pour créer le compte administrateur.
+
+**Scripts utiles :**
+```bash
+npm run generate:types    # Génère payload-types.ts
+npm run generate:importmap
+```
 
 ## 📂 Structure du projet
 
 ```
 ├── app/
-│   ├── globals.css      # Styles globaux
-│   ├── layout.tsx       # Layout principal
-│   └── page.tsx         # Page d'accueil
+│   ├── (frontend)/      # Site public (/, sitemap, etc.)
+│   └── (payload)/       # Admin Payload (/admin) et API (/api)
+├── collections/         # Collections Payload (Users, Media)
+├── payload.config.ts    # Configuration Payload CMS
 ├── components/
 │   ├── Header.tsx       # En-tête avec navigation
 │   ├── Hero.tsx         # Section hero
@@ -128,3 +157,6 @@ Pour toute question ou problème, ouvrez une issue sur GitHub.
 ## 📄 Licence
 
 Ce projet est sous licence MIT.
+
+## Compte Payload en local
+rayan.benhamida18@gmail.com : test

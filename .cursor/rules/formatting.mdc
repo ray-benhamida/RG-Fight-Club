@@ -1,0 +1,11 @@
+---
+description: Indentation du projet — tabs taille 4
+alwaysApply: true
+---
+
+# Indentation
+
+- Utiliser des **tabulations** (`\t`) pour l'indentation, jamais des espaces
+- Taille visuelle des tabs : **4**
+- S'aligner sur le style des fichiers existants du projet (ex. `components/`, `collections/`)
+- Ne pas reformater l'indentation des fichiers non modifiés
