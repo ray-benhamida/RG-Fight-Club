@@ -23,7 +23,7 @@ export default function Presentation({ overlapTop = false }: PresentationProps) 
 					<div className="relative shadow-2xl">
 						<div className="relative aspect-5/6 overflow-hidden">
 							<Image
-								src="/images/rgfightclub_presentation.png"
+								src="/images/rgfightclub_presentation_optimised.png"
 								alt="Btisam Rguibi - Coach Sportif"
 								fill
 								className="object-cover"
