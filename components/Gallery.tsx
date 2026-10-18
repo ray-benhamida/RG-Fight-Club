@@ -56,7 +56,7 @@ const rows: GalleryRow[] = [
         kind: "grid",
         cells: [
             {
-                src: "/images/gallery/DSC_1720-1.jpg",
+                src: "/images/gallery/DSC_1720-1.JPG",
                 col: 2,
                 alt: "RG Fight Club",
             },

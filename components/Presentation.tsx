@@ -27,7 +27,6 @@ export default function Presentation({ overlapTop = false }: PresentationProps) 
 								alt="Btisam Rguibi - Coach Sportif"
 								fill
 								className="object-cover"
-								priority
 							/>
 						</div>
 					</div>

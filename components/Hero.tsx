@@ -1,7 +1,50 @@
 'use client';
 
+import { getImageProps } from 'next/image';
+import { preload } from 'react-dom';
+
 interface HeroProps {
 	hideScrollIndicator?: boolean
+}
+
+const heroImage = {
+	alt: '',
+	fill: true,
+	sizes: '100vw',
+	priority: true,
+	className: 'object-cover',
+} as const;
+
+function HeroBackground() {
+	const {
+		props: { srcSet: webpSrcSet, src: webpSrc, sizes },
+	} = getImageProps({
+		...heroImage,
+		src: '/images/rgfightclub_hero_optimised.webp',
+	});
+	const { props: pngProps } = getImageProps({
+		...heroImage,
+		src: '/images/rgfightclub_hero_optimised.png',
+	});
+
+	if (webpSrcSet) {
+		preload(webpSrc, {
+			as: 'image',
+			type: 'image/webp',
+			imageSrcSet: webpSrcSet,
+			imageSizes: sizes,
+			fetchPriority: 'high',
+		});
+	}
+
+	return (
+		<picture>
+			{webpSrcSet ? (
+				<source type="image/webp" srcSet={webpSrcSet} sizes={sizes} />
+			) : null}
+			<img {...pngProps} alt="" fetchPriority="high" />
+		</picture>
+	);
 }
 
 export default function Hero({ hideScrollIndicator = false }: HeroProps) {
@@ -14,13 +57,7 @@ export default function Hero({ hideScrollIndicator = false }: HeroProps) {
 
 	return (
 		<section className="relative h-screen flex items-center justify-center overflow-hidden">
-			{/* Background Image */}
-			<div
-				className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-				style={{
-					backgroundImage: "url('/images/rgfightclub_hero.png')",
-				}}
-			/>
+			<HeroBackground />
 
 			{/* Dark Overlay */}
 			<div className="absolute inset-0 bg-black/70" />

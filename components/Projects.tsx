@@ -94,45 +94,53 @@ function ProjectContent({
 	activeTab: number;
 }) {
 	return (
-		<div className="w-full">
-			{prestations.map((prestation, index) => (
-				<div
-					key={index}
-					className={`transition-all duration-500 ${activeTab === index
-							? 'opacity-100 block'
-							: 'opacity-0 hidden'
+		<div className="relative w-full">
+			{prestations.map((prestation, index) => {
+				const isActive = activeTab === index;
+
+				return (
+					<div
+						key={index}
+						aria-hidden={!isActive}
+						inert={!isActive}
+						className={`transition-opacity duration-500 ${
+							isActive
+								? 'relative z-10 opacity-100'
+								: 'pointer-events-none absolute inset-x-0 top-0 z-0 opacity-0'
 						}`}
-				>
-					<div className="flex flex-col md:flex-row gap-8 lg:gap-16 items-center justify-between">
-						<div className="space-y-6 mb-8 md:mb-0" data-aos="fade-right">
-							<h2
-								className="text-3xl md:text-4xl lg:text-3xl font-light text-white leading-tight [&_span]:text-primary font-alt italic"
-								dangerouslySetInnerHTML={{ __html: prestation.title }}
-							/>
-
-							{prestation.paragraphs.map((paragraph, pIndex) => (
-								<p
-									key={pIndex}
-									className="text-base text-white leading-relaxed"
-								>
-									{paragraph}
-								</p>
-							))}
-						</div>
-
-						<div className="relative w-full shrink-0 p-3 md:w-5/12" data-aos="fade-left" data-aos-delay="200">
-							<div className="relative aspect-[4/3] shadow-2xl before:pointer-events-none before:absolute before:top-3 before:left-3 before:z-10 before:h-full before:w-full before:bg-primary before:content-['']">
-								<Image
-									src={prestation.image}
-									alt={prestation.imageAlt}
-									fill
-									className="object-cover relative z-20"
+					>
+						<div className="flex flex-col md:flex-row gap-8 lg:gap-16 items-center justify-between">
+							<div className="space-y-6 mb-8 md:mb-0" data-aos="fade-right">
+								<h2
+									className="text-3xl md:text-4xl lg:text-3xl font-light text-white leading-tight [&_span]:text-primary font-alt italic"
+									dangerouslySetInnerHTML={{ __html: prestation.title }}
 								/>
+
+								{prestation.paragraphs.map((paragraph, pIndex) => (
+									<p
+										key={pIndex}
+										className="text-base text-white leading-relaxed"
+									>
+										{paragraph}
+									</p>
+								))}
+							</div>
+
+							<div className="relative w-full shrink-0 p-3 md:w-5/12">
+								<div className="relative aspect-[4/3] shadow-2xl before:pointer-events-none before:absolute before:top-3 before:left-3 before:z-10 before:h-full before:w-full before:bg-primary before:content-['']">
+									<Image
+										src={prestation.image}
+										alt={prestation.imageAlt}
+										fill
+										sizes="(max-width: 768px) 100vw, 42vw"
+										className="object-cover relative z-20"
+									/>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			))}
+				);
+			})}
 		</div>
 	);
 }
