@@ -19,7 +19,7 @@ const prestations: Prestation[] = [
 			"Se défendre, s'imposer, gagner en force et en assurance. La boxe, c'est bien plus qu'un entraînement, c'est une transformation.",
 			"Prête à te dépasser ? Il ne reste plus qu'à monter sur le ring, affronter tes peurs, repousser tes limites et découvrir la force que tu portes en toi depuis toujours.",
 		],
-		image: '/images/gallery/roman-aguila-nfZKyKlGujs-unsplash.jpg',
+		image: '/images/gallery/IMG-20250919-WA0086.jpg',
 		imageAlt:
 			'Cours collectifs de boxe RG Fight Club – entraînement en groupe en Seine-Saint-Denis (93)',
 	},
@@ -30,7 +30,7 @@ const prestations: Prestation[] = [
 			"Un coaching 100% sur-mesure pour atteindre tes objectifs personnels. Technique, cardio, force : on adapte chaque séance à ton niveau et tes ambitions.",
 			"Que tu débutes ou que tu cherches à perfectionner ta technique, je t'accompagne pas à pas pour révéler ton potentiel.",
 		],
-		image: '/images/gallery/logan-weaver-lgnwvr-MR2vi-J-520-unsplash.jpg',
+		image: '/images/gallery/IMG-20240308-WA0032.jpg',
 		imageAlt:
 			'Coaching individuel personnalisé – cours privés de boxe avec Btisam Rguibi, Île-de-France',
 	},
@@ -41,7 +41,7 @@ const prestations: Prestation[] = [
 			"Participe à des événements uniques : stages intensifs, challenges entre membres, et compétitions amicales pour te mesurer et progresser.",
 			"Une communauté soudée qui se retrouve régulièrement pour partager sa passion et repousser ses limites ensemble.",
 		],
-		image: '/images/gallery/sunday-ii-sunday-DeM9l5sHeFE-unsplash.jpg',
+		image: '/images/gallery/20230528_141630-1.jpg',
 		imageAlt:
 			'Événements et stages boxe RG Fight Club – challenges et compétitions amicales',
 	},
@@ -52,7 +52,7 @@ const prestations: Prestation[] = [
 			"Rejoins notre association et fais partie d'une famille de combattantes motivées et solidaires. Ensemble, nous créons un espace bienveillant où chacune peut s'épanouir.",
 			"Au-delà du sport, c'est un véritable état d'esprit : entraide, dépassement de soi et valorisation de chaque membre.",
 		],
-		image: '/images/gallery/lisa-marie-theck-bP1rDWiCXcU-unsplash.jpg',
+		image: '/images/gallery/DSC_4445.jpg',
 		imageAlt:
 			'Association RG Fight Club – communauté et cours de boxe à Aulnay-sous-Bois, Bobigny et 93',
 	},

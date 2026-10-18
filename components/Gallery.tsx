@@ -11,13 +11,13 @@ type GalleryRow =
 const rows: GalleryRow[] = [
     {
         kind: "single",
-        src: "/images/gallery/lisa-marie-theck-bP1rDWiCXcU-unsplash.jpg",
-        alt: "Séance de boxe et entraînement au sac – galerie RG Fight Club",
+        src: "/images/gallery/20260617_143615.jpg",
+        alt: "RG Fight Club",
     },
     {
         kind: "single",
-        src: "/images/gallery/roman-aguila-nfZKyKlGujs-unsplash.jpg",
-        alt: "Gants de boxe et préparation à l'effort – coaching sportif 93",
+        src: "/images/gallery/DSC_4445.jpg",
+        alt: "RG Fight Club",
     },
     {
         kind: "grid",
@@ -25,48 +25,48 @@ const rows: GalleryRow[] = [
             {
                 src: "/images/gallery/jonathan-tomas-Wyta6ocqCSQ-unsplash.jpg",
                 col: 2,
-                alt: "Exercices et renforcement en salle – RG Fight Club Seine-Saint-Denis",
+                alt: "RG Fight Club",
             },
             {
                 src: "/images/gallery/asma-butt-cAFaaIDXzLE-unsplash.jpg",
-                alt: "Entraînement cardio et boxe pour tous les niveaux",
+                alt: "RG Fight Club",
             },
             {
-                src: "/images/gallery/jonathan-tomas-TaQ2Q7Sn448-unsplash.jpg",
-                alt: "Cours collectif dynamique – esprit d'équipe RG Fight Club",
+                src: "/images/gallery/IMG-20240308-WA0032.jpg",
+                alt: "RG Fight Club",
             },
         ],
     },
     {
         kind: "single",
-        src: "/images/gallery/michael-starkie-7Jc5OwXwfWw-unsplash.jpg",
-        alt: "Technique et impact au sac – cours de boxe Île-de-France",
+        src: "/images/gallery/20260408_143912.jpg",
+        alt: "RG Fight Club",
     },
     {
         kind: "single",
-        src: "/images/gallery/gold-touch-nutrition-c8rFJrImUgQ-unsplash.jpg",
-        alt: "Préparation physique et nutrition du sportif – RG Fight Club",
+        src: "/images/gallery/20260606_122741-1.jpg",
+        alt: "RG Fight Club",
     },
     {
         kind: "single",
         src: "/images/gallery/michael-deubner-X7ZAtrJHuCE-unsplash.jpg",
-        alt: "Ambiance ring et motivation – association RG Fight Club",
+        alt: "RG Fight Club",
     },
     {
         kind: "grid",
         cells: [
             {
-                src: "/images/gallery/logan-weaver-lgnwvr-MR2vi-J-520-unsplash.jpg",
+                src: "/images/gallery/DSC_1720-1.jpg",
                 col: 2,
-                alt: "Shadow boxing et travail technique – coach sportif Btisam Rguibi",
+                alt: "RG Fight Club",
             },
             {
-                src: "/images/gallery/sunday-ii-sunday-DeM9l5sHeFE-unsplash.jpg",
-                alt: "Échauffement et mobilité avant séance de boxe",
+                src: "/images/gallery/20260614_103217.jpg",
+                alt: "RG Fight Club",
             },
             {
-                src: "/images/gallery/michael-deubner-X7ZAtrJHuCE-unsplash.jpg",
-                alt: "Communauté et entraînement – RG Fight Club Bobigny et alentours",
+                src: "/images/gallery/20260905_123542.jpg",
+                alt: "RG Fight Club",
             },
         ],
     },
